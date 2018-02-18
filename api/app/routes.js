@@ -5,7 +5,8 @@ var mongoose = require('mongoose');
 
 module.exports = function(app, passport) {
     app.get('/', function(req, res) {
-        res.send('Hello world');
+        console.log(req.user);
+        res.end('...Hello...world');
     });
 
     app.get('/signup', function(req, res) {
@@ -18,8 +19,9 @@ module.exports = function(app, passport) {
         res.json(user);
     });
 
+
     app.post('/login', passport.authenticate('local-login'),function(req, res) {
-        let user = req.user;
+        let user = req.body;
         res.json(user);
     });
 
