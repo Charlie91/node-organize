@@ -1,25 +1,18 @@
 import Vue from 'vue'
 import App from './App.vue'
-import Auth from './Auth.vue'
-import Reg from './Registration.vue'
+import Auth from './views/auth/Auth.vue'
+import Reg from './views/auth/Registration.vue'
+import router from './router'
 
 Vue.component('Auth',Auth)
 Vue.component('Reg', Reg)
 
-const routes = {
-    '/': App,
-}
-
 
 new Vue({
     el: '#app',
-    data: {
-        currentRoute: window.location.pathname
-    },
-    computed: {
-        ViewComponent () {
-            return routes[this.currentRoute]
-        }
-    },
-    render (h) { return h(this.ViewComponent) }
+    router,
+    template: '<App/>',
+    components: {
+        App
+    }
 })

@@ -1,17 +1,18 @@
 <template>
     <div>
-        <h4>Авторизация/Вход в систему</h4>
+        <h4>Регистрация</h4>
         <form>
             <input v-model="userData.login" name="login"/>
             <input v-model="userData.password" name="password"/>
-            <input type="submit" value="Войти" @click.prevent="sendData"/>
+            <input type="submit" value="Зарегистрироваться" @click.prevent="sendData"/>
         </form>
     </div>
 </template>
 
 <script>
+    import axios from 'axios';
     export default {
-        name: 'Auth',
+        name: 'Registration',
         data(){
             return {
                 userData:{
@@ -23,23 +24,18 @@
         methods:{
             sendData(e){
                 if(!(this.userData.login && this.userData.password))return;
-                $.ajax({
-                    type: "POST",
-                    url: 'http://localhost:8080/login',
-                    data:{
+                axios.post('http://localhost:8080/signup',
+                    {
                         email:this.userData.login,
                         password:this.userData.password
-                    },
-                    xhrFields: {
-                        withCredentials: true
-                    },
-                    success: function(data){
-                        console.log(data);
-                    },
-                    error:function(err){
-                        console.log(err)
                     }
-                });
+                )
+                    .then(function (response) {
+                        console.log(response)
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
             }
         }
     }
