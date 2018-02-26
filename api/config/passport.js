@@ -55,7 +55,6 @@ module.exports = function(passport) {
             if (user) {
                 return done(null, false);
             } else {
-
                 // if there is no user with that email
                 // create the user
                 var newUser  = new User();

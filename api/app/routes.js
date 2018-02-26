@@ -1,5 +1,5 @@
 // app/routes.js
-var User     = require('../app/models/user');
+var Note     = require('../app/models/note');
 var mongoose = require('mongoose');
 
 
@@ -19,12 +19,11 @@ module.exports = function(app, passport) {
         res.json(user);
     });
 
-
     app.post('/login', passport.authenticate('local-login'),function(req, res) {
         let user = req.body;
-        res.json(user);
+        res.status = 200;
+        res.json({login:'success'});
     });
-
 
     app.get('/profile', isLoggedIn, function(req, res) {
         let user = req.user;
@@ -33,7 +32,31 @@ module.exports = function(app, passport) {
 
     app.get('/logout', function(req, res) {
         req.logout();
-        res.redirect('/');
+        res.json({login:false})
+    });
+
+    app.get('/notes', isLoggedIn,function(req, res) {
+        Note.find({
+            author: req.user.id
+        }).exec(function(err, books) {
+            if (err) throw err;
+            res.json(books);
+        })
+    });
+
+    app.post('/addNote', isLoggedIn,function(req, res) {
+
+        var newNote = new Note();
+        newNote.text = req.body.text;
+        newNote.author = req.user._id;
+
+        newNote.save(function(err) {
+            if (err)
+                throw err;
+            console.log('note successfully saved.');
+            res.json({isSaved:true});
+        });
+
     });
 };
 
@@ -45,5 +68,6 @@ function isLoggedIn(req, res, next) {
         return next();
 
     // if they aren't redirect them to the home page
-    res.redirect('/');
+    res.status(401);
+    res.json({login:false});
 }
