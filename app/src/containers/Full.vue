@@ -1,10 +1,14 @@
 <template>
-    <div>
-        <router-view></router-view>
+    <b-container class="bv-example-row">
         <div>
-            <a @click="logOut">Выйти</a>
+            <router-view></router-view>
+            <div style="text-align:center">
+                <b-button class="exit_button" @click="logOut" variant="outline-danger">
+                    Выйти
+                </b-button>
+            </div>
         </div>
-    </div>
+    </b-container>
 </template>
 
 <script>
@@ -51,3 +55,11 @@
         }
     }
 </script>
+
+<style>
+    .exit_button{
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+</style>

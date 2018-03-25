@@ -1,11 +1,11 @@
 <template>
     <div>
         <h4>Авторизация/Вход в систему</h4>
-        <b-form @submit="sendData">
+        <b-form @submit.prevent="sendData">
             <b-form-group
                           label="Email/Логин:"
                           label-for="exampleInput1"
-                          description="Логин или адрес почты">
+            >
                 <b-form-input
                               type="text"
                               v-model="userData.login"
@@ -22,7 +22,7 @@
                               placeholder="Введите пароль">
                 </b-form-input>
             </b-form-group>
-            <b-button type="submit" variant="success">Войти</b-button>
+            <b-button type="submit" variant="primary">Войти</b-button>
         </b-form>
     </div>
 </template>

@@ -45,8 +45,7 @@ module.exports = function(app, passport) {
     });
 
     app.post('/addNote', isLoggedIn,function(req, res) {
-
-        var newNote = new Note();
+        var newNote = new Note();   
         newNote.text = req.body.text;
         newNote.author = req.user._id;
 
@@ -56,7 +55,12 @@ module.exports = function(app, passport) {
             console.log('note successfully saved.');
             res.json({isSaved:true});
         });
+    });
 
+    app.post('/deleteNote', isLoggedIn,function(req, res) {
+        let id = req.body.id;
+        Note.findByIdAndRemove(id,() => console.log('ready'));
+        res.end('ok');
     });
 };
 

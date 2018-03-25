@@ -5,7 +5,7 @@
             <b-form-group id="exampleInputGroup1"
                           label="Email/Логин:"
                           label-for="exampleInput1"
-                          description="Логин или адрес почты">
+            >
                 <b-form-input id="exampleInput1"
                               type="text"
                               v-model="userData.login"
@@ -22,7 +22,7 @@
                               placeholder="Введите пароль">
                 </b-form-input>
             </b-form-group>
-            <b-button type="submit" variant="success">Зарегистрироваться</b-button>
+            <b-button type="submit" variant="primary">Зарегистрироваться</b-button>
         </b-form>
     </div>
 </template>
@@ -58,3 +58,5 @@
         }
     }
 </script>
+
+

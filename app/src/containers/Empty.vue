@@ -42,37 +42,23 @@
     }
 </script>
 
-<style>
-    body{
-        background-image:url('../assets/background.jpg');
-        background-size:cover;
-    }
-    .form-control{
-        background: rgba(0,0,0,0.3);
-    }
-    .form-control:focus{
-        background: rgba(0,0,0,0.5);
-    }
-
-
-</style>
 
 <style scoped>
     #app {
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
+         -webkit-font-smoothing: antialiased;
+         -moz-osx-font-smoothing: grayscale;
         text-align: center;
         color: #2c3e50;
         width:60%;
         margin:auto;
         margin-top: 160px;
-        color:#fff;
-        background:rgba(0,0,0,0.5);
+        background:rgb(241, 241, 241);
         padding:30px;
         border-radius:3px;
-        border: 1px solid #28a7459e;
+        box-shadow: 0 0 3px #d0d0d0;
     }
+
     #app img{
         width:100px;
         height:auto;
